@@ -1,6 +1,8 @@
 (ns forclj-ans.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn a1 [] true)
+
+(defn a2 [] 4)
+
+(defn a3 [] "HELLO WORLD")
+
