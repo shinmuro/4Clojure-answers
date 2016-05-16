@@ -12,3 +12,13 @@
   (list :a :b :c))
 
 (defn a5 [] '(1 2 3 4))
+
+(defn a6 [] '(:a :b :c))
+
+(defn a7 [] [1 2 3 4])
+
+(defn a8 [] #{:a :b :c :d})
+
+(defn a9 [] 2)
+
+(defn a10 [] 20)
