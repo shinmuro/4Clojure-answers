@@ -26,3 +26,22 @@
 (defn a11 [] [:b 2])
 
 (defn a12 [] 3)
+
+(defn a13 [] '(20 30 40))
+
+(defn a14 [] 8)
+
+(defn a15 [x] (* x 2))
+
+(defn a16 [name]
+  (str "Hello, " name "!"))
+
+(defn a17 [] '(6 7 8))
+
+(defn a18 [] '(6 7))
+
+(defn a64 [] +)
+
+(defn a134 [k m]
+  (and (contains? m k)
+       (nil? (k m))))

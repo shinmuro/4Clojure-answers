@@ -43,3 +43,43 @@
   (is (= (a12) (first '(3 2 1))))
   (is (= (a12) (second [2 3 4])))
   (is (= (a12) (last (list 1 2 3)))))
+
+(deftest q13
+  (is (= (a13) (rest [10 20 30 40]))))
+
+(deftest q14
+  (are [x y] (= x y)
+    (a14) ((fn add-five [x] (+ x 5)) 3)
+    (a14) ((fn [x] (+ x 5)) 3)
+    (a14) (#(+ % 5) 3)
+    (a14) ((partial + 5) 3)))
+
+(deftest q15
+  (are [x y] (= (a15 x) y)
+    2 4
+    3 6
+    11 22
+    7 14))
+
+(deftest q16
+  (are [x y] (= (a16 x) y)
+    "Dave" "Hello, Dave!"
+    "Jenn" "Hello, Jenn!"
+    "Rhea" "Hello, Rhea!"))
+
+(deftest q17
+  (is (= (a17) (map #(+ % 5) '(1 2 3)))))
+
+(deftest q18
+  (is (= (a18) (filter #(> % 5) '(3 4 5 6 7)))))
+
+(deftest q64
+  (is (= 15 (reduce (a64) [1 2 3 4 5])))
+  (is (=  0 (reduce (a64) [])))
+  (is (=  6 (reduce (a64) 1 [2 3]))))
+
+(deftest q134
+  (are [t-or-f k] (t-or-f (a134 k {:a nil :b 2}))
+    true? :a
+    false? :b
+    false? :c))
