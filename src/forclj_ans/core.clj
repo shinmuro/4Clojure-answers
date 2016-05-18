@@ -40,8 +40,26 @@
 
 (defn a18 [] '(6 7))
 
+(defn a35 [] 7)
+
+(defn a36
+  "まんまは厳しいので destructuring でそれっぽく"
+  [] [7 3 1])
+
+(defn a37 [] "ABC")
+
+(defn a57 [] [5 4 3 2 1])
+
+(defn a68 [] [7 6 5 4 3])
+
 (defn a64 [] +)
+
+(def a71 last)
+
+(def a72 (partial apply +))
 
 (defn a134 [k m]
   (and (contains? m k)
        (nil? (k m))))
+
+(defn a145 [] [1 5 9 13 17 21 25 29 33 37])
