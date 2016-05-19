@@ -2,17 +2,26 @@
   (:require [clojure.test :refer :all]
             [forclj-ans.core :refer :all]))
 
+(defmacro ^:private problem [desc & body]
+  `(testing (str "4Clojure problem #" ~desc)
+     ~@body))
+
+;; TODO: testing で問題番号、問題名追加
 (deftest q1
-  (is (= (a1) true)))
+  (problem "1 Nothing but the Truth" 
+    (is (= (a1) true))))
 
 (deftest q2
-  (is (= (a2) (- 10 (* 2 3)))))
+  (problem "2 Simple Math"
+    (is (= (a2) (- 10 (* 2 3))))))
 
 (deftest q3
-  (is (= (a3) "HELLO WORLD")))
+  (problem "3 Intro to Strings"
+    (is (= (a3) "HELLO WORLD"))))
 
 (deftest q4
-  (is (= (a4) '(:a :b :c))))
+  (problem "4 Intro to Lists"
+   (is (= (a4) '(:a :b :c)))))
 
 (deftest q5
   (is (= (a5) (conj '(2 3 4) 1)))
