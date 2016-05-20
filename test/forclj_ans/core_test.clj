@@ -137,6 +137,13 @@
       [[1 2] [3 4] [5 6]]  3
       '(13)                1)))
 
+(deftest q23
+  (problem "23 Reverse a Sequence, Special Restrictions: reverse, rseq"
+    (are [coll result] (= (a23 coll) result)
+      [1 2 3 4 5]          [5 4 3 2 1]
+      (sorted-set 5 7 2 7) '(7 5 2)
+      [[1 2] [3 4] [5 6]]  [[5 6] [3 4] [1 2]])))
+
 (deftest q24
   (problem "24 Sum It All Up"
     (are [coll result] (= (a24 coll) result)
@@ -146,7 +153,43 @@
       '(0 0 -1)       -1
       '(1 10 3)       14)))
 
+(deftest q25
+  (problem "25 Find the odd numbers"
+    (are [coll result] (= (a25 coll) result)
+      #{1 2 3 4 5} '(1 3 5)
+      [4 2 1 6]    '(1)
+      [2 2 4 6]    '()
+      [1 1 1 3]    '(1 1 1 3))))
 
+(deftest q26
+  (problem "26 Fibonacci Sequence"
+    (are [n result] (= (a26 n) result)
+      3 '(1 1 2)
+      6 '(1 1 2 3 5 8)
+      8 '(1 1 2 3 5 8 13 21))))
+
+(deftest q27
+  (problem "27 Palindrome Detector"
+    (are [t-or-f coll] (t-or-f (a27 coll))
+      false? '(1 2 3 4 5)
+      true?  "racecar"
+      true?  [:foo :bar :foo]
+      true?  '(1 1 3 3 1 1)
+      false? '(:a :b :c))))
+
+(deftest q29
+  (problem "29 Get the Caps"
+    (is (= (a29 "HeLlO, WoRlD!") "HLOWRD"))
+    (is (empty? (a29 "nothing")))
+    (is (= (a29 "$#A(*&987Zf") "AZ"))))
+
+(deftest q32
+  (problem "32 Duplicate a Sequence"
+    (are [coll result] (= (a32 coll) result)
+      [1 2 3]       '(1 1 2 2 3 3)
+      [:a :a :b :b] '(:a :a :a :a :b :b :b :b)
+      [[1 2] [3 4]] '([1 2] [1 2] [3 4] [3 4])
+      [[1 2] [3 4]] '([1 2] [1 2] [3 4] [3 4]))))
 
 (deftest q35
   (problem "35 Local bindings"
@@ -163,6 +206,23 @@
 (deftest q37
   (problem "37 Regular Expressions"
     (is (= (a37) (apply str (re-seq #"[A-Z]+" "bAlB3Ce"))))))
+
+(deftest q38
+  (problem "38 Maximum value"
+    (is (= (a38 1 8 3 4) 8))
+    (is (= (a38 30 20) 30))
+    (is (= (a38 45 67 11) 67))))
+
+(deftest q38
+  (problem "38 Maximum value"
+    (is (= (a38 1 8 3 4) 8))
+    (is (= (a38 30 20) 30))
+    (is (= (a38 45 67 11)))))
+
+(deftest q48
+  (problem "48 Intro to some"
+    (is (= a48 (some #{2 7 6} [5 6 7 8])))
+    (is (= a48 (some #(when (even? %) %) [5 6 7 8])))))
 
 (deftest q52
   (problem "52 Intro to Destructuring"

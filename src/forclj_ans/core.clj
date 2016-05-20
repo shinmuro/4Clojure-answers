@@ -54,7 +54,7 @@
       (recur (rest in-coll) (dec n)))))
 
 (defn a21-alt
-  "最初にしてた回答"
+  "最初にしてた解答"
   [coll index]
   (first (drop index coll)))
 
@@ -65,14 +65,70 @@
       (recur (rest x) (inc n)))))
 
 (defn a22-alt [coll]
-  "最初にしてた回答。殆ど変わりないんだが letfn は別に要らないような。"
+  "最初の解答。殆ど変わりないんだが letfn は別に要らないような。"
   (letfn [(cnt1 [coll n]
             (if (= coll '())
               n
               (recur (rest coll) (inc n))))]
     (cnt1 coll 0)))
 
+(defn a23 [coll]
+  (loop [result nil
+         remained coll]
+    (if-not (seq remained)
+      result
+      (recur (cons (first remained) result) (rest remained)))))
+
 (defn a24 [coll] (apply + coll))
+
+(defn a25 [coll] (filter odd? coll))
+
+;; シーケンス返すなら loop で求めた方が楽な気がする
+(defn a26
+  "ものっそい愚直な解答。けど簡単に StackOverFlow 起こす Clojure だと現実的にはこちらが正しい気がする。"
+  [n]
+  (loop [result [1 1]
+         accum 2]
+    (cond
+      (zero? n) nil
+      (= n 1) [1]
+      (= n 2) result
+      (= n accum) result
+      :else (recur (conj result (apply + (take-last 2 result)))
+                   (inc accum)))))
+
+(defn a27 [coll]
+  (let [len (count coll)
+        [x y-tmp] (split-at (quot len 2) coll)
+        y (if (pos? (mod len 2)) (rest y-tmp) y-tmp)]
+    (= x (reverse y))))
+
+(defn a27-alt
+  "最初の解答。明らかにこっちの方が簡単"
+  [coll]
+  (= (seq coll) (reverse coll)))
+
+(defn a29
+  [s]
+  (->> (for [c s
+             :let [n (int c)]
+             :when (and (< 64 n) (> 91 n))]
+         c)
+       (apply str)))
+
+(defn a29-alt
+  "最初の解答。今さら Character/isUpperCase を自前でやる必要もないんでこれで十分ではある"
+  [s]
+  (apply str (filter (fn [c] (Character/isUpperCase c)) s)))
+
+(defn a32
+  [coll]
+  (mapcat list coll coll))
+
+(defn a32-alt
+  "最初の解答。シンプルというかそのままというか。"
+  [coll]
+  (interleave coll coll))
 
 (defn a35 [] 7)
 
@@ -81,6 +137,16 @@
   [] [7 3 1])
 
 (defn a37 [] "ABC")
+
+(defn a38 [& args]
+  (reduce (fn [x y] (if (>= x y) x y)) args))
+
+(defn a38-alt
+  "最初の解答。コードは上の方が長いけど最近は上の方が好み"
+  [& args]
+  (first (sort > args)))
+
+(def a48 6)
 
 (defn a57 [] [5 4 3 2 1])
 
