@@ -121,6 +121,28 @@
   [s]
   (apply str (filter (fn [c] (Character/isUpperCase c)) s)))
 
+(defn a30 [coll]
+  (loop [result []
+         c coll]
+    (cond
+      (not (seq result))
+      (recur (conj result (first c)) (rest c))
+
+      (= (last result) (first c))
+      (recur result (rest c))
+
+      :default (recur (conj result (first c)) (rest c))
+      )))
+
+(defn a30-alt
+  "最初の解答"
+  [coll]
+  (map first (partition-by identity coll)))
+
+(def a30-alt-2
+  "1.7 以降ならそのままのものがある"
+  dedupe)
+
 (defn a32
   [coll]
   (mapcat list coll coll))
@@ -129,6 +151,17 @@
   "最初の解答。シンプルというかそのままというか。"
   [coll]
   (interleave coll coll))
+
+(defn a34
+  [start end]
+  (if (= start end)
+    nil
+    (cons start (a34 (inc start) end))))
+
+(defn a34-alt
+  "最初の解答"
+  [start end]
+  (take (- end start) (iterate inc start)))
 
 (defn a35 [] 7)
 

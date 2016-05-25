@@ -183,6 +183,12 @@
     (is (empty? (a29 "nothing")))
     (is (= (a29 "$#A(*&987Zf") "AZ"))))
 
+(deftest q30
+  (problem "30 Compress a Sequence"
+    (is (= (apply str (a30 "Leeeeeerrroyyy")) "Leroy"))
+    (is (= (a30 [1 1 2 3 3 2 2 3]) '(1 2 3 2 3)))
+    (is (= (a30 [[1 2] [1 2] [3 4] [1 2]]) '([1 2] [3 4] [1 2])))))
+
 (deftest q32
   (problem "32 Duplicate a Sequence"
     (are [coll result] (= (a32 coll) result)
@@ -190,6 +196,13 @@
       [:a :a :b :b] '(:a :a :a :a :b :b :b :b)
       [[1 2] [3 4]] '([1 2] [1 2] [3 4] [3 4])
       [[1 2] [3 4]] '([1 2] [1 2] [3 4] [3 4]))))
+
+(deftest q34
+  (problem "34 Implement range, Special Restrictions: range"
+    (are [start end result] (= (a34 start end) result)
+        1 4 '(1 2 3)
+       -2 2 '(-2 -1 0 1)
+        5 8 '(5 6 7))))
 
 (deftest q35
   (problem "35 Local bindings"
